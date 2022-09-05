@@ -20,11 +20,21 @@ class MainPage(GridLayout):
 
 
 class AppsPage(GridLayout):
-    pass
+    """
+    Page where apps and extra control features will go
+    """
+
+    def __init__(self, **kwargs):
+        super(AppsPage, self).__init__(**kwargs)
 
 
 class SettingsPage(GridLayout):
-    pass
+    """
+    Page where Settings and About info will go
+    """
+
+    def __init__(self, **kwargs):
+        super(SettingsPage, self).__init__(**kwargs)
 
 
 class RemoteControl(PageLayout):
