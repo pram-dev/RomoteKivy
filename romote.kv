@@ -1,0 +1,30 @@
+#:kivy 1.0.9
+
+
+<MainPage>:
+	cols: 1
+	Button:
+		text: "Main remote page"
+
+
+<AppsPage>:
+	cols: 1
+	Button:
+		text: "Apps page"
+
+
+<SettingsPage>:
+	cols: 1
+	Button:
+		text: "Settings page"
+
+
+<RemoteControl>:
+	MainPage:
+		id: main_page_id
+
+	AppsPage:
+		id: apps_page_id
+
+	SettingsPage:
+		id: settings_page_id
