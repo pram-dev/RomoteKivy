@@ -1,37 +1,18 @@
 #:kivy 1.0.9
 
 
-<MainPage>:
-	cols: 1
-	Button:
-		text: "Main remote page"
-
-
-<AppsPage>:
-	cols: 1
-	Button:
-		text: "Apps page"
-
-
-<SettingsPage>:
-	cols: 1
-	Button:
-		text: "Settings page"
-
-<TestClass>:
+<PageLayout>:
 	GridLayout:
 		cols: 1
 		Button:
-			text: "test class"
-
-
-<RemoteControl>:
-	MainPage:
-		id: main_page_id
-
-	AppsPage:
-		id: apps_page_id
-
-	SettingsPage:
-		id: settings_page_id
-
+			text: "Main controller page"
+		Button:
+			text: "bottom text"
+	GridLayout:
+		cols: 1
+		Button:
+			text: "apps and features page"
+	GridLayout:
+		cols: 1
+		Button:
+			text: "settings and about page"
