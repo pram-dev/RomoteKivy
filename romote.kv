@@ -1,13 +1,19 @@
 #:kivy 1.0.9
 
-
 <AppRootLayout>:
 	cols: 1
 
 	BoxLayout:
+		orientation: "horizontal"
+
 		Button:
-			text: "power button (left side), logo image or text (right side)"
-			
+			size_hint: 0.1, 0.5
+			pos_hint: {"x" : 0, "top": 1}
+			text: "power button"
+		Button:
+			size_hint: 0.3, 0.5
+			pos_hint: {"right": 1, "top": 1}
+			text: "logo text or image"
 	Button:
 		text: "SVG d-pad widget will go here"
 
