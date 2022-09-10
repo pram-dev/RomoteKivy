@@ -16,7 +16,7 @@ class RootScreenManager(MDScreenManager):
     pass
 
 
-class RomoteApp(MDApp):
+class RomotePyApp(MDApp):
     """
     Base Romote app
     """
@@ -26,4 +26,4 @@ class RomoteApp(MDApp):
 
 
 if __name__ == "__main__":
-    RomoteApp().run()
+    RomotePyApp().run()
