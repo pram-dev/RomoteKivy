@@ -4,29 +4,25 @@ GUI implementation of romote.py
 
 import kivy
 from kivy.app import App
-from kivy.uix.pagelayout import PageLayout
+from kivy.uix.gridlayout import GridLayout
 
 kivy.require("2.1.0")
 
 
-class RemoteControl(PageLayout):
+class AppRootLayout(GridLayout):
     """
-    Main RemoteControl layout
+    Main Layout for main screen
     """
-
-    def __init__(self, **kwargs):
-        super(RemoteControl, self).__init__(**kwargs)
+    pass
 
 
 class RomoteApp(App):
     """
-    Main RomoteApp
+    Base Romote app
     """
 
     def build(self):
-        control = RemoteControl()
-        # control.contact_tv()
-        return control
+        return AppRootLayout()
 
 
 if __name__ == "__main__":

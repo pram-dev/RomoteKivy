@@ -1,18 +1,13 @@
 #:kivy 1.0.9
 
 
-<PageLayout>:
-	GridLayout:
-		cols: 1
+<AppRootLayout>:
+	cols: 1
+
+	BoxLayout:
 		Button:
-			text: "Main controller page"
-		Button:
-			text: "bottom text"
-	GridLayout:
-		cols: 1
-		Button:
-			text: "apps and features page"
-	GridLayout:
-		cols: 1
-		Button:
-			text: "settings and about page"
+			text: "upper third section"
+	Button:
+		text: "middle third section"
+	Button:
+		text: "lower third section"
