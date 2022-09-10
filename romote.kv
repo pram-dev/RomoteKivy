@@ -3,23 +3,24 @@
 <AppRootLayout>:
 	cols: 1
 
-	BoxLayout:
-		orientation: "horizontal"
+	RelativeLayout:
+		size_hint: 1, 0.5
 
 		Button:
-			size_hint: 0.1, 0.5
+			size_hint: 0.25, 1
 			pos_hint: {"x" : 0, "top": 1}
 			text: "power button"
 		Button:
-			size_hint: 0.3, 0.5
+			size_hint: 0.4, 1
 			pos_hint: {"right": 1, "top": 1}
 			text: "logo text or image"
+
+	BoxLayout:
+		Button:
+			text: "customizable quick links/buttons to favorite apps will go here"
+
 	Button:
 		text: "SVG d-pad widget will go here"
 
 	Button:
 		text: "playback controls and function buttons will go here"
-
-	BoxLayout:
-		Button:
-			text: "customizable quick links/buttons to favorite apps will go here"
