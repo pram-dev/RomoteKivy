@@ -1,26 +1,38 @@
 #:kivy 1.0.9
 
-<AppRootLayout>:
-	cols: 1
 
-	RelativeLayout:
-		size_hint: 1, 0.5
+<SettingsAboutScreen>: #not implemented yet
+
+
+<MainRemoteScreen>: #MD screen
+	GridLayout:
+		cols: 1
+
+		MDRelativeLayout:
+			size_hint: 1, 0.5
+
+			MDRectangleFlatIconButton:
+				icon: "power"
+				size_hint: 0.25, 1
+				pos_hint: {"x" : 0, "top": 1}
+				text: "power button"
+			Button:
+				size_hint: 0.4, 1
+				pos_hint: {"right": 1, "top": 1}
+				text: "logo text or image"
+
+		MDBoxLayout:
+			Button:
+				text: "customizable quick links/buttons to favorite apps will go here"
 
 		Button:
-			size_hint: 0.25, 1
-			pos_hint: {"x" : 0, "top": 1}
-			text: "power button"
+			text: "SVG d-pad widget will go here"
+
 		Button:
-			size_hint: 0.4, 1
-			pos_hint: {"right": 1, "top": 1}
-			text: "logo text or image"
+			text: "playback controls and function buttons will go here"
 
-	BoxLayout:
-		Button:
-			text: "customizable quick links/buttons to favorite apps will go here"
 
-	Button:
-		text: "SVG d-pad widget will go here"
 
-	Button:
-		text: "playback controls and function buttons will go here"
+<RootScreenManager>:
+	MainRemoteScreen:
+	SettingsAboutScreen:
