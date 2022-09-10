@@ -26,7 +26,7 @@ class MainRemoteScreen(MDScreen):
 
 class RootScreenManager(MDScreenManager):
     """
-    Main Layout for main screen
+    Main Screen Manager controlling all app screens
     """
     pass
 
