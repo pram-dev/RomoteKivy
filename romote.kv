@@ -1,5 +1,21 @@
 #:kivy 1.0.9
 
+
+
+#####-----
+<MDScreen>:
+
+	#:set CANVAS_RGBA_COLOR (0.125, 0.125, 0.125, 1)
+
+	canvas:
+		Color:
+			rgba: CANVAS_RGBA_COLOR
+		Rectangle:
+			pos: root.pos
+			size: root.size
+
+
+
 #####-----
 <MainScreenGridLayout@MDGridLayout>:
 	cols: 1
@@ -8,6 +24,10 @@
 
 ######-----
 <ControllerTopSection@MDRelativeLayout>:
+
+	#:set POWER_BUTTON_TEXT "POWER"
+	#:set POWER_BUTTON_ICON "power"
+
 	size_hint: 1, 0.5
 
 	MDRectangleFlatIconButton:
@@ -52,9 +72,6 @@
 #####-----
 <MainRemoteScreen@MDScreen>: #MD screen
 
-#:set POWER_BUTTON_TEXT "POWER"
-#:set POWER_BUTTON_ICON "power"
-
 	MainScreenGridLayout:
 
 		ControllerTopSection:
@@ -63,7 +80,16 @@
 		ControllerFunctionButtonsSection:
 
 
+
+#####-----
+<InitialSetupScreen@MDScreen>:
+	Label:
+		text: "initial setup screen"
+
+
+
 #####-----
 <RootScreenManager>:
+	InitialSetupScreen:
 	MainRemoteScreen:
 	SettingsAboutScreen:
