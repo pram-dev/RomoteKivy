@@ -40,6 +40,12 @@ class Romote(Roku):
 
     def safe_wrap_all_commands(self, wrapper_func):
 
+        self.input_hdmi1 = wrapper_func(self.input_hdmi1)
+        self.input_hdmi2 = wrapper_func(self.input_hdmi2)
+        self.input_hdmi3 = wrapper_func(self.input_hdmi3)
+        self.input_hdmi4 = wrapper_func(self.input_hdmi4)
+        self.input_tuner = wrapper_func(self.input_tuner)
+        self.input_av1 = wrapper_func(self.input_av1)
         self.poweron = wrapper_func(self.poweron)
         self.poweroff = wrapper_func(self.poweroff)
         self.up = wrapper_func(self.up)
@@ -60,5 +66,8 @@ class Romote(Roku):
         self.volume_down = wrapper_func(self.volume_down)
         self.volume_mute = wrapper_func(self.volume_mute)
         self.search = wrapper_func(self.search)
+        self.literal = wrapper_func(self.literal)
+        #method to safely retrieve apps list
+        #method to safely launch app
 
     CONTACT_ESTABLISHED = False
