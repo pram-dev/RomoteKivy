@@ -5,8 +5,8 @@ from requests.exceptions import ConnectTimeout, ConnectionError
 
 class Romote(Roku):
     """
-    Wrapper for Roku class to better integrate with GUI.
-    Also, adds wrappers for Roku commands to make them safer by
+    Wrapper for Roku class to better integrate with a GUI.
+    Also adds wrappers for Roku commands to make them safer by
     handling exceptions when contact with host fails.
     """
 
