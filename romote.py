@@ -19,7 +19,6 @@ class Romote(Roku):
                 elif not arg:
                     command_func()
                 success = True
-                print("success asdflsajdfaskldfjsafuh")
             except (gaierror, ConnectTimeout, ConnectionError):
                 print("Could not contact device.")
                 success = False
