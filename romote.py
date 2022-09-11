@@ -12,11 +12,11 @@ class Romote(Roku):
 
     @staticmethod
     def safe_command_wrapper(command_func):
-        def safe_command_func(*arg):
+        def safe_command_func(*args):
             try:
-                if arg:
-                    command_func(arg)
-                elif not arg:
+                if args:
+                    command_func(args)
+                elif not args:
                     command_func()
                 success = True
             except (gaierror, ConnectTimeout, ConnectionError):
@@ -25,6 +25,14 @@ class Romote(Roku):
 
             return success
         return safe_command_func
+
+    def launch_app(self, app_index):
+        app = self[app_index]
+        if app:
+            app.launch()
+        else:
+            print("App does not exist on current Roku device.")
+        return
 
     def safe_wrap_all_commands(self, wrapper_func=safe_command_wrapper):
 
@@ -55,13 +63,17 @@ class Romote(Roku):
         self.volume_mute = wrapper_func(self.volume_mute)
         self.search = wrapper_func(self.search)
         self.literal = wrapper_func(self.literal)
-        # method to safely retrieve apps list
-        # method to safely launch app
+        self.launch_app = wrapper_func(self.launch_app)
 
-    def attempt_first_contact(self):
+    def attempt_first_contact(self, ip_str=None):
+        if ip_str and not self.CONTACT_ESTABLISHED:
+            super().__init__(ip_str)
+
         success = self.up()
         if success:
             self.CONTACT_ESTABLISHED = True
+        else:
+            self.CONTACT_ESTABLISHED = False
 
     def __init__(self, host=None, *args, **kwargs):
         self.safe_wrap_all_commands()
@@ -71,3 +83,4 @@ class Romote(Roku):
             self.attempt_first_contact()
 
     CONTACT_ESTABLISHED = False
+    APP_LAUNCH_SUCCESS = False

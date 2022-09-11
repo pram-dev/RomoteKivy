@@ -26,14 +26,14 @@ class RomotePyApp(MDApp):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        controller = Romote()
 
         config = ConfigParser()
         config.read(consts.CACHE_FILE)
 
-#        if config.has_option(consts.SECTION_CACHED, consts.KEY_PREV_IP):
-#            cached_ip = config.get(consts.SECTION_CACHED, consts.KEY_PREV_IP)
-#           controller = Romote(cached_ip)
-        Romote("192.168.0.134")
+        if config.has_option(consts.SECTION_CACHED, consts.KEY_LAST_IP):
+            cached_ip = config.get(consts.SECTION_CACHED, consts.KEY_LAST_IP)
+            controller.attempt_first_contact(cached_ip)
 
     def build(self):
         screen_manager = RootScreenManager()
