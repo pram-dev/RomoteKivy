@@ -19,6 +19,7 @@ class Romote(Roku):
                 elif not arg:
                     command_func()
                 success = True
+                print("success asdflsajdfaskldfjsafuh")
             except (gaierror, ConnectTimeout, ConnectionError):
                 print("Could not contact device.")
                 success = False
@@ -26,19 +27,7 @@ class Romote(Roku):
             return success
         return safe_command_func
 
-    def attempt_first_contact(self):
-        success = self.up()
-        if success:
-            self.CONTACT_ESTABLISHED = True
-
-    def __init__(self, host=None, *args, **kwargs):
-        self.safe_wrap_all_commands(Romote.safe_command_wrapper)
-
-        if host:
-            super().__init__(host, *args, **kwargs)
-            self.attempt_first_contact()
-
-    def safe_wrap_all_commands(self, wrapper_func):
+    def safe_wrap_all_commands(self, wrapper_func=safe_command_wrapper):
 
         self.input_hdmi1 = wrapper_func(self.input_hdmi1)
         self.input_hdmi2 = wrapper_func(self.input_hdmi2)
@@ -67,7 +56,19 @@ class Romote(Roku):
         self.volume_mute = wrapper_func(self.volume_mute)
         self.search = wrapper_func(self.search)
         self.literal = wrapper_func(self.literal)
-        #method to safely retrieve apps list
-        #method to safely launch app
+        # method to safely retrieve apps list
+        # method to safely launch app
+
+    def attempt_first_contact(self):
+        success = self.up()
+        if success:
+            self.CONTACT_ESTABLISHED = True
+
+    def __init__(self, host=None, *args, **kwargs):
+        self.safe_wrap_all_commands()
+
+        if host:
+            super().__init__(host, *args, **kwargs)
+            self.attempt_first_contact()
 
     CONTACT_ESTABLISHED = False
