@@ -40,11 +40,25 @@ class Romote(Roku):
 
     def safe_wrap_all_commands(self, wrapper_func):
 
+        self.poweron = wrapper_func(self.poweron)
+        self.poweroff = wrapper_func(self.poweroff)
         self.up = wrapper_func(self.up)
         self.right = wrapper_func(self.right)
         self.down = wrapper_func(self.down)
         self.left = wrapper_func(self.left)
         self.select = wrapper_func(self.select)
         self.back = wrapper_func(self.back)
+        self.home = wrapper_func(self.home)
+        self.info = wrapper_func(self.info)
+        self.forward = wrapper_func(self.forward)
+        self.reverse = wrapper_func(self.reverse)
+        self.play = wrapper_func(self.play)
+        self.replay = wrapper_func(self.replay)
+        self.channel_up = wrapper_func(self.channel_up)
+        self.channel_down = wrapper_func(self.channel_down)
+        self.volume_up = wrapper_func(self.volume_up)
+        self.volume_down = wrapper_func(self.volume_down)
+        self.volume_mute = wrapper_func(self.volume_mute)
+        self.search = wrapper_func(self.search)
 
     CONTACT_ESTABLISHED = False
