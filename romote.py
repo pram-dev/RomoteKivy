@@ -29,8 +29,10 @@ class Romote(Roku):
         app = self[app_index]
         if app:
             app.launch()
+            self.APP_LAUNCH_SUCCESSFUL = True
         else:
             print("App does not exist on current Roku device.")
+            self.APP_LAUNCH_SUCCESSFUL = False
         return
 
     def safe_wrap_all_commands(self, wrapper_func=safe_command_wrapper):
@@ -71,7 +73,7 @@ class Romote(Roku):
         self.up()
         if self.COMMAND_SUCCESSFUL:
             self.CONTACT_ESTABLISHED = True
-        else:
+        elif not self.COMMAND_SUCCESSFUL:
             self.CONTACT_ESTABLISHED = False
 
     def __init__(self, host=None, *args, **kwargs):
