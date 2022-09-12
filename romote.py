@@ -33,7 +33,6 @@ class Romote(Roku):
         else:
             print("App does not exist on current Roku device.")
             self.APP_LAUNCH_SUCCESSFUL = False
-        return
 
     def safe_wrap_all_commands(self, wrapper_func=safe_command_wrapper):
 

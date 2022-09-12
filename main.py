@@ -13,9 +13,6 @@ kivy.require("2.1.0")
 
 
 class RootScreenManager(MDScreenManager):
-    """
-    Main Screen Manager controlling all app screens
-    """
     pass
 
 
@@ -26,8 +23,8 @@ class RomotePyApp(MDApp):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
         self.controller = Romote()
+
         config = ConfigParser()
         config.read(consts.CACHE_FILE)
 
