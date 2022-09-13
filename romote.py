@@ -10,7 +10,7 @@ class Romote(Roku):
     handling exceptions when contact with host fails.
     """
 
-    def __safe_command_wrapper(self, command_func):
+    def _safe_command_wrapper(self, command_func):
         def safe_command_func(*args):
             try:
                 if args:
@@ -32,7 +32,7 @@ class Romote(Roku):
             print("App does not exist on current Roku device.")
             self.APP_LAUNCH_SUCCESSFUL = False
 
-    def safe_wrap_all_commands(self, wrapper_func=__safe_command_wrapper):
+    def safe_wrap_all_commands(self, wrapper_func=_safe_command_wrapper):
 
         self.input_hdmi1 = wrapper_func(self, self.input_hdmi1)
         self.input_hdmi2 = wrapper_func(self, self.input_hdmi2)
