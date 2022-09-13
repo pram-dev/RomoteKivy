@@ -2,7 +2,6 @@
 
 #####-----
 <RootScreenManager>:
-	id: root_scr_mgr
 
 	contact_est: self.remote.CONTACT_ESTABLISHED
 	current: main_remote_scr.name if self.contact_est else init_setup_scr.name
@@ -48,10 +47,16 @@
 	size_hint: (1, 0.5)
 
 	MDRectangleFlatIconButton:
+		id: power_button
 		icon: POWER_BUTTON_ICON
 		size_hint: 0.25, 1
 		pos_hint: {"x" : 0, "top": 1}
 		text: POWER_BUTTON_TEXT
+		on_press: app.root.remote.power()
+	Label:
+		size_hint: 0.35, 1
+		pos: (power_button.right, 0)
+		text: "POWER_STATE"
 	Button:
 		size_hint: 0.4, 1
 		pos_hint: {"right": 1, "top": 1}
