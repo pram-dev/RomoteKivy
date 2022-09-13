@@ -22,7 +22,7 @@ class RootScreenManager(MDScreenManager):
     def __init__(self, remote, *args, **kwargs):
         self.remote = remote
         super().__init__(*args, **kwargs)
-        if not self.remote.CONTACT_ESTABLISHED:
+        if self.remote.CONTACT_ESTABLISHED:
             self.current = RootScreenManager.main_remote_scr.name
         else:
             self.current = RootScreenManager.init_setup_scr.name
