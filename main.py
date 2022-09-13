@@ -13,7 +13,13 @@ kivy.require("2.1.0")
 
 
 class RootScreenManager(MDScreenManager):
-    pass
+    """
+    Main screen manager for RomotePyApp
+    """
+
+    def __init__(self, remote, *args, **kwargs):
+        self.remote = remote
+        super().__init__(*args, **kwargs)
 
 
 class RomotePyApp(MDApp):
@@ -33,7 +39,7 @@ class RomotePyApp(MDApp):
             self.controller.attempt_first_contact(cached_ip)
 
     def build(self):
-        screen_manager = RootScreenManager()
+        screen_manager = RootScreenManager(self.controller)
         return screen_manager
 
 

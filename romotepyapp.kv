@@ -3,11 +3,12 @@
 #####-----
 <RootScreenManager>:
 
-	current: main_remote_scr.name
+	contact_est: self.remote.CONTACT_ESTABLISHED
+	current: main_remote_scr.name if self.contact_est else init_setup_scr.name
 
 	InitialSetupScreen:
-		id: initial_setup_scr
-		name: "initial_setup_scr"
+		id: init_setup_scr
+		name: "init_setup_scr"
 	MainRemoteScreen:
 		id: main_remote_scr
 		name: "main_remote_scr"
