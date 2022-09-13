@@ -11,7 +11,6 @@ class Romote(Roku):
     """
 
     def safe_command_wrapper(self, command_func):
-
         def safe_command_func(*args):
             try:
                 if args:
@@ -22,7 +21,6 @@ class Romote(Roku):
             except (gaierror, ConnectTimeout, ConnectionError):
                 print("Could not contact device.")
                 self.COMMAND_SUCCESSFUL = False
-
         return safe_command_func
 
     def launch_app(self, app_index):
