@@ -7,9 +7,11 @@ import consts
 from romote import Romote
 from configparser import ConfigParser
 from kivymd.app import MDApp
+from kivy.core.window import Window
 from kivymd.uix.screenmanager import MDScreenManager
 
 kivy.require("2.1.0")
+Window.size = consts.DEFAULT_WINDOW_SIZE
 
 
 class RootScreenManager(MDScreenManager):
@@ -20,6 +22,10 @@ class RootScreenManager(MDScreenManager):
     def __init__(self, remote, *args, **kwargs):
         self.remote = remote
         super().__init__(*args, **kwargs)
+        if not self.remote.CONTACT_ESTABLISHED:
+            self.current = RootScreenManager.main_remote_scr.name
+        else:
+            self.current = RootScreenManager.init_setup_scr.name
 
     # function to pass Romote object to currently active screen
     # def hand_remote():

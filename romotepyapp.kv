@@ -2,9 +2,11 @@
 
 #####-----
 <RootScreenManager>:
+	id: root_scr_mgr
 
-	contact_est: self.remote.CONTACT_ESTABLISHED
-	current: main_remote_scr.name if self.contact_est else init_setup_scr.name
+	init_setup_scr: init_setup_scr
+	main_remote_scr: main_remote_scr
+	settings_about_scr: settings_about_scr
 
 	InitialSetupScreen:
 		id: init_setup_scr
@@ -105,9 +107,9 @@
 	MainScreenGridLayout:
 
 		ControllerTopSection:
-		ControllerQuickLinksSection:
 		ControllerDPadSection:
 		ControllerFunctionButtonsSection:
+		ControllerQuickLinksSection:
 
 
 
