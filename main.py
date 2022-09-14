@@ -43,8 +43,8 @@ class PowerState(Button):
     Section containing Roku device/power-state info.
     """
 
-    def update_power_state(self, remote):
-        self.text = f"POWER_STATE: {remote.ROKU_POWER_STATE}"
+    def update_power_state(self, power_state):
+        self.text = f"POWER_STATE: {power_state}"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
