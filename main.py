@@ -22,7 +22,13 @@ class MainRemoteScreen(MDScreen):
     """
     Main remote control interface.
     """
-    pass
+
+    def on_pre_enter(self):
+        # update_all_buttons()
+        pass
+
+    def receive_remote(self, remote):
+        self.remote = remote
 
 
 class ControllerTopSection(MDRelativeLayout):
@@ -56,13 +62,21 @@ class RootScreenManager(MDScreenManager):
     Main screen manager for RomotePyApp
     """
 
+    def hand_remote(self, scr_name, remote):
+        scr = self.get_screen(scr_name)
+        scr.receive_remote(remote)
+
+    def set_screen(self, scr_name, remote):
+        self.hand_remote(scr_name, self.remote)
+        self.current = scr_name
+
     def __init__(self, remote, *args, **kwargs):
         self.remote = remote
         super().__init__(*args, **kwargs)
         if self.remote.CONTACT_ESTABLISHED:
-            self.current = RootScreenManager.main_remote_scr.name
+            self.set_screen(self.main_remote_scr.name, self.remote)
         else:
-            self.current = RootScreenManager.init_setup_scr.name
+            self.set_screen(self.init_setup_scr.name, self.remote)
 
 
 class RomotePyApp(MDApp):
