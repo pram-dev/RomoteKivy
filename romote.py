@@ -14,7 +14,7 @@ class Romote(Roku):
         def safe_command_func(*args):
             try:
                 if args:
-                    command_func(args)
+                    command_func(*args)
                 elif not args:
                     command_func()
                 self.COMMAND_SUCCESSFUL = True
