@@ -59,11 +59,11 @@
 	MDFillRoundFlatIconButton:
 		id: power_button
 		icon: POWER_BUTTON_ICON
-		size_hint: 0.25, 1
-		pos_hint: {"x" : 0, "top": 1}
+		size_hint: 0.25, 0.5
+		pos_hint: {"x" : 0, "center_y": 0.5}
 		text: POWER_BUTTON_TEXT
 		on_press: app.root.remote.power()
-	MDLabel:
+	Button:
 		size_hint: 0.35, 1
 		pos: (power_button.right, 0)
 		text: "POWER_STATE"
@@ -71,21 +71,21 @@
 	Button:
 		size_hint: 0.4, 1
 		pos_hint: {"right": 1, "top": 1}
-		text: "logo text or image"
+		text: "LOGOS_TEXT_IMAGES"
 
 
 
 #####-----
 <ControllerQuickLinksSection@MDBoxLayout>:
 	Button:
-		text: "customizable quick links/buttons to favorite apps will go here"
+		text: "QUICKLINKS_FAVORITES_CUSTOMIZABLE_BUTTONS"
 
 
 
 #####-----
 <ControllerDPadSection@MDRelativeLayout>:
 	Button:
-		text: "SVG dpad will go here"
+		text: "SVG_DPAD_WIDGET"
 
 
 
@@ -93,7 +93,7 @@
 <ControllerFunctionButtonsSection@MDGridLayout>:
 	cols: 1
 	Button:
-		text: "playback controls and function buttons will go here"
+		text: "PLAYBACK_CTRLS_FUNCTION_BUTTONS"
 
 
 
@@ -116,4 +116,4 @@
 #####-----
 <InitialSetupScreen@MDScreen>:
 	Label:
-		text: "initial setup screen"
+		text: "INITIAL_SETUP_SCREEN"
