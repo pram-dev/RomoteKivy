@@ -8,10 +8,34 @@ from romote import Romote
 from configparser import ConfigParser
 from kivymd.app import MDApp
 from kivy.core.window import Window
+from kivy.uix.button import Button
+from kivymd.uix.relativelayout import MDRelativeLayout
 from kivymd.uix.screenmanager import MDScreenManager
+from kivymd.uix.button import MDFillRoundFlatButton
 
 kivy.require("2.1.0")
 Window.size = consts.DEFAULT_WINDOW_SIZE
+
+
+class ControllerTopSection(MDRelativeLayout):
+    """
+    Top section of main controller GUI.
+    """
+    pass
+
+
+class PowerState(Button):
+    """
+    Section containing Roku device/power-state info.
+    """
+    pass
+
+
+class PowerButton(MDFillRoundFlatButton):
+    """
+    Power button widget on remote control GUI.
+    """
+    pass
 
 
 class RootScreenManager(MDScreenManager):
