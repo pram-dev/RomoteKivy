@@ -27,10 +27,6 @@ class RootScreenManager(MDScreenManager):
         else:
             self.current = RootScreenManager.init_setup_scr.name
 
-    # function to pass Romote object to currently active screen
-    # def hand_remote():
-    #    pass
-
 
 class RomotePyApp(MDApp):
     """

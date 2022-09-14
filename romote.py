@@ -67,10 +67,12 @@ class Romote(Roku):
         if ip_str and not self.CONTACT_ESTABLISHED:
             super().__init__(ip_str)
 
-        self.up()
-        if self.COMMAND_SUCCESSFUL:
+        try:
+            self.ROKU_POWER_STATE = self.power_state
             self.CONTACT_ESTABLISHED = True
-        elif not self.COMMAND_SUCCESSFUL:
+            print("Contact established!")
+        except OSError:
+            print("Could not establish contact.")
             self.CONTACT_ESTABLISHED = False
 
     def __init__(self, host=None, *args, **kwargs):
