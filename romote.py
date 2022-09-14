@@ -62,7 +62,6 @@ class Romote(Roku):
         self.search = wrapper_func(self, self.search)
         self.literal = wrapper_func(self, self.literal)
         self.launch_app = wrapper_func(self, self.launch_app)
-        self.__getattr__ = wrapper_func(self, self.__getattr__)
 
     def attempt_first_contact(self, ip_str=None):
         if ip_str and not self.CONTACT_ESTABLISHED:
