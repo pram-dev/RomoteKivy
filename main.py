@@ -11,10 +11,18 @@ from kivy.core.window import Window
 from kivy.uix.button import Button
 from kivymd.uix.relativelayout import MDRelativeLayout
 from kivymd.uix.screenmanager import MDScreenManager
+from kivymd.uix.screen import MDScreen
 from kivymd.uix.button import MDFillRoundFlatButton
 
 kivy.require("2.1.0")
 Window.size = consts.DEFAULT_WINDOW_SIZE
+
+
+class MainRemoteScreen(MDScreen):
+    """
+    Main remote control interface.
+    """
+    pass
 
 
 class ControllerTopSection(MDRelativeLayout):
@@ -28,7 +36,12 @@ class PowerState(Button):
     """
     Section containing Roku device/power-state info.
     """
-    pass
+
+    def update_power_state(self, remote):
+        self.text = f"POWER_STATE: {remote.ROKU_POWER_STATE}"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 
 class PowerButton(MDFillRoundFlatButton):
