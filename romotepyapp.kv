@@ -48,6 +48,30 @@
 
 
 
+#####-----
+<PowerState>:
+	size_hint: 0.35, 1
+	text: "POWER_STATE"
+	color: (1, 1, 1, 1)
+
+
+
+#####-----
+<LogosSection@Button>:
+	size_hint: 0.4, 1
+	text: "LOGOS_TEXT_IMAGES"
+
+
+
+#####-----
+<PowerButton>:
+	icon: POWER_BUTTON_ICON
+	size_hint: 0.25, 0.5
+	text: POWER_BUTTON_TEXT
+	on_press: app.root.remote.power()
+
+
+
 ######-----
 <ControllerTopSection>:
 
@@ -60,24 +84,15 @@
 	power_state_section: power_state_section
 	logos_txt_section: logos_txt_section
 
-	MDFillRoundFlatIconButton:
+	PowerButton:
 		id: power_button
-		icon: POWER_BUTTON_ICON
-		size_hint: 0.25, 0.5
 		pos_hint: {"x" : 0, "center_y": 0.5}
-		text: POWER_BUTTON_TEXT
-		on_press: app.root.remote.power()
-	Button:
+	PowerState:
 		id: power_state_section
-		size_hint: 0.35, 1
 		pos: (power_button.right, 0)
-		text: "POWER_STATE"
-		color: (1, 1, 1, 1)
-	Button:
+	LogosSection:
 		id: logos_txt_section
-		size_hint: 0.4, 1
 		pos_hint: {"right": 1, "top": 1}
-		text: "LOGOS_TEXT_IMAGES"
 
 
 
