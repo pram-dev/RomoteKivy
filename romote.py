@@ -75,6 +75,13 @@ class Romote(Roku):
             print("Could not establish contact.")
             self.CONTACT_ESTABLISHED = False
 
+        # this up command is only being used during development to visually
+        # indicate if Roku device has succesfully been contacted and has
+        # received/executed the "up" command
+        self.up()
+        # self.up() only to visually indicate on Roku devices that contact
+        # has been established
+
     def __init__(self, host=None, *args, **kwargs):
         self.CONTACT_ESTABLISHED = False
         self.COMMAND_SUCCESSFUL = False
