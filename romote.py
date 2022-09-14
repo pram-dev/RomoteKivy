@@ -10,6 +10,10 @@ class Romote(Roku):
     handling exceptions when contact with host fails.
     """
 
+    def power_toggle(self):
+        self.power()
+        self.ROKU_POWER_STATE = self.power_state
+
     def _safe_command_wrapper(self, command_func):
         def safe_command_func(*args):
             try:
@@ -62,6 +66,7 @@ class Romote(Roku):
         self.search = wrapper_func(self, self.search)
         self.literal = wrapper_func(self, self.literal)
         self.launch_app = wrapper_func(self, self.launch_app)
+        self.power_toggle = wrapper_func(self, self.power_toggle)
 
     def attempt_first_contact(self, ip_str=None):
         if ip_str and not self.CONTACT_ESTABLISHED:
