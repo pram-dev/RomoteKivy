@@ -80,16 +80,16 @@ class RootScreenManager(MDScreenManager):
         scr.receive_remote(remote)
 
     def set_screen(self, scr_name, remote):
-        self.hand_remote(scr_name, self.remote)
+        self.hand_remote(scr_name, remote)
         self.current = scr_name
 
-    def __init__(self, remote, *args, **kwargs):
-        self.remote = remote
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if self.remote.CONTACT_ESTABLISHED:
-            self.set_screen(self.main_remote_scr.name, self.remote)
+        remote = MDApp.get_running_app().controller
+        if remote.CONTACT_ESTABLISHED:
+            self.set_screen(self.main_remote_scr.name, remote)
         else:
-            self.set_screen(self.init_setup_scr.name, self.remote)
+            self.set_screen(self.init_setup_scr.name, remote)
 
 
 class RomotePyApp(MDApp):
@@ -97,8 +97,11 @@ class RomotePyApp(MDApp):
     Base Romote app
     """
 
+    controller = None
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
         self.controller = Romote()
 
         config = ConfigParser()
@@ -109,7 +112,7 @@ class RomotePyApp(MDApp):
             self.controller.attempt_first_contact(cached_ip)
 
     def build(self):
-        screen_manager = RootScreenManager(self.controller)
+        screen_manager = RootScreenManager()
         return screen_manager
 
 
