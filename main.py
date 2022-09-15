@@ -25,7 +25,8 @@ class MainRemoteScreen(MDScreen):
 
     def on_pre_enter(self):
         # update_all_buttons()
-        self.main_top_section.power_state_section.update_power_state(self.remote.ROKU_POWER_STATE)
+        self.main_top_section.power_state_section.update_power_state(
+            self.remote.ROKU_POWER_STATE)
 
     def receive_remote(self, remote):
         self.remote = remote
@@ -56,12 +57,17 @@ class PowerButton(MDFillRoundFlatButton):
     """
 
     def power_button_press(self):
-        self.ROOT_MAIN_SCR = self.parent.parent.parent
-        self.POWER_STATE_WIDGET = self.parent.power_state_section
-
-        self.ROOT_MAIN_SCR.remote.power_toggle()
-        power_state = self.ROOT_MAIN_SCR.remote.ROKU_POWER_STATE
-        self.POWER_STATE_WIDGET.update_power_state(power_state)
+        ROOT_MAIN_SCR = MDApp.get_running_app().root.ids.main_remote_scr
+        POWER_STATE_WIDGET = (
+            MDApp.get_running_app().
+            root.ids.main_remote_scr.
+            ids.main_top_section.
+            ids.power_state_section)
+        ROOT_MAIN_SCR.remote.power_toggle()
+        POWER_STATE = (
+            MDApp.get_running_app().root.
+            ids.main_remote_scr.remote.ROKU_POWER_STATE)
+        POWER_STATE_WIDGET.update_power_state(POWER_STATE)
 
 
 class RootScreenManager(MDScreenManager):
