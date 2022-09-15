@@ -12,7 +12,7 @@ from kivy.uix.button import Button
 from kivymd.uix.relativelayout import MDRelativeLayout
 from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.button import MDFillRoundFlatButton
+from kivymd.uix.button import MDFillRoundFlatIconButton
 
 kivy.require("2.1.0")
 Window.size = consts.DEFAULT_WINDOW_SIZE
@@ -50,7 +50,7 @@ class PowerState(Button):
         super().__init__(*args, **kwargs)
 
 
-class PowerButton(MDFillRoundFlatButton):
+class PowerButton(MDFillRoundFlatIconButton):
     """
     Power button widget on remote control GUI.
     """
