@@ -56,6 +56,14 @@ class PowerButton(MDFillRoundFlatIconButton):
     Power button widget on remote control GUI.
     """
 
+    def update_bg_color(self):
+        power_state = MDApp.get_running_app().controller.ROKU_POWER_STATE
+
+        if power_state == "On":
+            self.md_bg_color = (50 / 255, 188 / 255, 252 / 255, 1)
+        elif power_state == "Off":
+            self.md_bg_color = (223 / 255, 70 / 255, 97 / 255, 1)
+
     def power_button_press(self):
         ROOT_MAIN_SCR = MDApp.get_running_app().root.ids.main_remote_scr
         POWER_STATE_WIDGET = (
@@ -68,6 +76,12 @@ class PowerButton(MDFillRoundFlatIconButton):
             MDApp.get_running_app().root.
             ids.main_remote_scr.remote.ROKU_POWER_STATE)
         POWER_STATE_WIDGET.update_power_state(POWER_STATE)
+        self.update_bg_color()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.update_bg_color()
 
 
 class RootScreenManager(MDScreenManager):
