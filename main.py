@@ -12,10 +12,34 @@ from kivy.uix.button import Button
 from kivymd.uix.relativelayout import MDRelativeLayout
 from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.screen import MDScreen
+from kivymd.uix.gridlayout import MDGridLayout
+from kivy.properties import ObjectProperty
+from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDFillRoundFlatIconButton
+from kivymd.uix.button import MDRectangleFlatIconButton
 
 kivy.require("2.1.0")
 Window.size = consts.DEFAULT_WINDOW_SIZE
+
+
+class FunctionButtons(MDRectangleFlatIconButton):
+    pass
+
+
+class BackButton(FunctionButtons):
+    pass
+
+
+class HomeButton(FunctionButtons):
+    pass
+
+
+class VolUpButton(FunctionButtons):
+    pass
+
+
+class VolDownButton(FunctionButtons):
+    pass
 
 
 class MainRemoteScreen(MDScreen):
@@ -25,7 +49,8 @@ class MainRemoteScreen(MDScreen):
 
     def on_pre_enter(self):
         # update_all_buttons()
-        self.main_top_section.power_state_section.update_power_state(self.remote.ROKU_POWER_STATE)
+        self.main_top_section.power_state_section.update_power_state(
+            self.remote.ROKU_POWER_STATE)
 
     def receive_remote(self, remote):
         self.remote = remote
@@ -36,6 +61,15 @@ class ControllerTopSection(MDRelativeLayout):
     Top section of main controller GUI.
     """
     pass
+
+
+class ControllerFunctionButtonsSection(MDBoxLayout):
+    """
+    Section of the remote control that contains all functionality buttons.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 
 class PowerState(Button):
@@ -55,13 +89,32 @@ class PowerButton(MDFillRoundFlatIconButton):
     Power button widget on remote control GUI.
     """
 
-    def power_button_press(self):
-        self.ROOT_MAIN_SCR = self.parent.parent.parent
-        self.POWER_STATE_WIDGET = self.parent.power_state_section
+    def update_bg_color(self):
+        power_state = MDApp.get_running_app().controller.ROKU_POWER_STATE
 
-        self.ROOT_MAIN_SCR.remote.power_toggle()
-        power_state = self.ROOT_MAIN_SCR.remote.ROKU_POWER_STATE
-        self.POWER_STATE_WIDGET.update_power_state(power_state)
+        if power_state == "On":
+            self.md_bg_color = (50 / 255, 188 / 255, 252 / 255, 1)
+        elif power_state == "Off":
+            self.md_bg_color = (223 / 255, 70 / 255, 97 / 255, 1)
+
+    def power_button_press(self):
+        ROOT_MAIN_SCR = MDApp.get_running_app().root.ids.main_remote_scr
+        POWER_STATE_WIDGET = (
+            MDApp.get_running_app().
+            root.ids.main_remote_scr.
+            ids.main_top_section.
+            ids.power_state_section)
+        ROOT_MAIN_SCR.remote.power_toggle()
+        POWER_STATE = (
+            MDApp.get_running_app().root.
+            ids.main_remote_scr.remote.ROKU_POWER_STATE)
+        POWER_STATE_WIDGET.update_power_state(POWER_STATE)
+        self.update_bg_color()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.update_bg_color()
 
 
 class RootScreenManager(MDScreenManager):
@@ -74,16 +127,16 @@ class RootScreenManager(MDScreenManager):
         scr.receive_remote(remote)
 
     def set_screen(self, scr_name, remote):
-        self.hand_remote(scr_name, self.remote)
+        self.hand_remote(scr_name, remote)
         self.current = scr_name
 
-    def __init__(self, remote, *args, **kwargs):
-        self.remote = remote
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if self.remote.CONTACT_ESTABLISHED:
-            self.set_screen(self.main_remote_scr.name, self.remote)
+        remote = MDApp.get_running_app().controller
+        if remote.CONTACT_ESTABLISHED:
+            self.set_screen(self.main_remote_scr.name, remote)
         else:
-            self.set_screen(self.init_setup_scr.name, self.remote)
+            self.set_screen(self.init_setup_scr.name, remote)
 
 
 class RomotePyApp(MDApp):
@@ -91,8 +144,11 @@ class RomotePyApp(MDApp):
     Base Romote app
     """
 
+    controller = None
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
         self.controller = Romote()
 
         config = ConfigParser()
@@ -103,7 +159,7 @@ class RomotePyApp(MDApp):
             self.controller.attempt_first_contact(cached_ip)
 
     def build(self):
-        screen_manager = RootScreenManager(self.controller)
+        screen_manager = RootScreenManager()
         return screen_manager
 
 

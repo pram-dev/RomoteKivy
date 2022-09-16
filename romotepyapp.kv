@@ -63,6 +63,7 @@
 
 
 
+
 #####-----
 <PowerButton>:
 	icon: POWER_BUTTON_ICON
@@ -111,11 +112,26 @@
 
 
 #####-----
-<ControllerFunctionButtonsSection@MDGridLayout>:
-	cols: 1
-	Button:
-		text: "PLAYBACK_CTRLS_FUNCTION_BUTTONS"
+<FunctionButtons>:
+	canvas:
+		Color:
+			rgba: (133 / 255, 179 / 255, 244/255, 1)
+		Rectangle:
+			pos: root.pos
+			size: root.size
 
+
+
+#####-----
+<ControllerFunctionButtonsSection>:
+	BackButton:
+		id: back_button
+	HomeButton:
+		id: home_button
+	VolUpButton:
+		id: vol_up_button
+	VolDownButton:
+		id: vol_down_button
 
 
 #####-----
