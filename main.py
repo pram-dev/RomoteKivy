@@ -12,10 +12,34 @@ from kivy.uix.button import Button
 from kivymd.uix.relativelayout import MDRelativeLayout
 from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.screen import MDScreen
+from kivymd.uix.gridlayout import MDGridLayout
+from kivy.properties import ObjectProperty
+from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDFillRoundFlatIconButton
+from kivymd.uix.button import MDRectangleFlatIconButton
 
 kivy.require("2.1.0")
 Window.size = consts.DEFAULT_WINDOW_SIZE
+
+
+class FunctionButtons(MDRectangleFlatIconButton):
+    pass
+
+
+class BackButton(FunctionButtons):
+    pass
+
+
+class HomeButton(FunctionButtons):
+    pass
+
+
+class VolUpButton(FunctionButtons):
+    pass
+
+
+class VolDownButton(FunctionButtons):
+    pass
 
 
 class MainRemoteScreen(MDScreen):
@@ -37,6 +61,23 @@ class ControllerTopSection(MDRelativeLayout):
     Top section of main controller GUI.
     """
     pass
+
+
+class ControllerFunctionButtonsSection(MDBoxLayout):
+    """
+    Section of the remote control that contains all functionality buttons.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.homebutton = HomeButton()
+        self.volupbutton = VolUpButton()
+        self.voldownbutton = VolDownButton()
+
+        self.add_widget(self.homebutton)
+        self.add_widget(self.volupbutton)
+        self.add_widget(self.voldownbutton)
 
 
 class PowerState(Button):
