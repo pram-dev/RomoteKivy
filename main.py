@@ -14,7 +14,7 @@ from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.gridlayout import MDGridLayout
 from kivy.properties import ObjectProperty
-from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.stacklayout import MDStackLayout
 from kivymd.uix.button import MDFillRoundFlatIconButton
 from kivymd.uix.button import MDRectangleFlatIconButton
 
@@ -63,7 +63,7 @@ class ControllerTopSection(MDRelativeLayout):
     pass
 
 
-class ControllerFunctionButtonsSection(MDBoxLayout):
+class ControllerFunctionButtonsSection(MDStackLayout):
     """
     Section of the remote control that contains all functionality buttons.
     """
