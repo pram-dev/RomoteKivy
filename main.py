@@ -71,14 +71,6 @@ class ControllerFunctionButtonsSection(MDBoxLayout):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.homebutton = HomeButton()
-        self.volupbutton = VolUpButton()
-        self.voldownbutton = VolDownButton()
-
-        self.add_widget(self.homebutton)
-        self.add_widget(self.volupbutton)
-        self.add_widget(self.voldownbutton)
-
 
 class PowerState(Button):
     """
