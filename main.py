@@ -12,17 +12,14 @@ from kivy.uix.button import Button
 from kivymd.uix.relativelayout import MDRelativeLayout
 from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.gridlayout import MDGridLayout
-from kivy.properties import ObjectProperty
-from kivymd.uix.stacklayout import MDStackLayout
 from kivymd.uix.button import MDFillRoundFlatIconButton
-from kivymd.uix.button import MDRectangleFlatIconButton
+from kivymd.uix.button import MDIconButton
 
 kivy.require("2.1.0")
 Window.size = consts.DEFAULT_WINDOW_SIZE
 
 
-class FunctionButtons(MDRectangleFlatIconButton):
+class FunctionButtons(MDIconButton):
     pass
 
 
@@ -63,7 +60,7 @@ class ControllerTopSection(MDRelativeLayout):
     pass
 
 
-class ControllerFunctionButtonsSection(MDStackLayout):
+class ControllerFunctionButtonsSection(MDRelativeLayout):
     """
     Section of the remote control that contains all functionality buttons.
     """
@@ -93,9 +90,9 @@ class PowerButton(MDFillRoundFlatIconButton):
         power_state = MDApp.get_running_app().controller.ROKU_POWER_STATE
 
         if power_state == "On":
-            self.md_bg_color = (50 / 255, 188 / 255, 252 / 255, 1)
+            self.md_bg_color = (50 / 255, 188 / 255, 252 / 255, 0.8)
         elif power_state == "Off":
-            self.md_bg_color = (223 / 255, 70 / 255, 97 / 255, 1)
+            self.md_bg_color = (223 / 255, 70 / 255, 97 / 255, 0.8)
 
     def power_button_press(self):
         ROOT_MAIN_SCR = MDApp.get_running_app().root.ids.main_remote_scr
