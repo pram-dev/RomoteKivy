@@ -39,6 +39,10 @@ class VolDownButton(FunctionButtons):
     pass
 
 
+class InfoButton(FunctionButtons):
+    pass
+
+
 class MainRemoteScreen(MDScreen):
     """
     Main remote control interface.
