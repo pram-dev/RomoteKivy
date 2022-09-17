@@ -36,7 +36,9 @@ class VolUpButton(FunctionButtons):
 
 
 class VolDownButton(FunctionButtons):
-    pass
+    """
+    Volume-down button class.
+    """
 
 
 class InfoButton(FunctionButtons):
@@ -50,11 +52,9 @@ class MainRemoteScreen(MDScreen):
 
     def on_pre_enter(self):
         # update_all_buttons()
+        self.remote = MDApp.get_running_app().controller
         self.main_top_section.power_state_section.update_power_state(
             self.remote.ROKU_POWER_STATE)
-
-    def receive_remote(self, remote):
-        self.remote = remote
 
 
 class ControllerTopSection(MDRelativeLayout):
@@ -123,21 +123,16 @@ class RootScreenManager(MDScreenManager):
     Main screen manager for RomotePyApp
     """
 
-    def hand_remote(self, scr_name, remote):
-        scr = self.get_screen(scr_name)
-        scr.receive_remote(remote)
-
-    def set_screen(self, scr_name, remote):
-        self.hand_remote(scr_name, remote)
+    def set_screen(self, scr_name):
         self.current = scr_name
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         remote = MDApp.get_running_app().controller
         if remote.CONTACT_ESTABLISHED:
-            self.set_screen(self.main_remote_scr.name, remote)
+            self.set_screen(self.main_remote_scr.name)
         else:
-            self.set_screen(self.init_setup_scr.name, remote)
+            self.set_screen(self.init_setup_scr.name)
 
 
 class RomotePyApp(MDApp):
