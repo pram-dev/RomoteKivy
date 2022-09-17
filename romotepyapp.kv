@@ -57,9 +57,9 @@
 
 
 #####-----
-<LogosSection@Button>:
+<ScreenMenuSpinner@Button>:
 	size_hint: 0.4, 1
-	text: "LOGOS_TEXT_IMAGES"
+	text: "SCREEN_MENU_SPINNER"
 
 
 
@@ -85,11 +85,11 @@
 	#:set POWER_BUTTON_TEXT "POWER"
 	#:set POWER_BUTTON_ICON "power"
 
-	size_hint: (1, 0.5)
+	size_hint: (1, 0.35)
 
 	power_button: power_button
 	power_state_section: power_state_section
-	logos_txt_section: logos_txt_section
+	menu_spinner: menu_spinner
 
 	PowerButton:
 		id: power_button
@@ -97,8 +97,8 @@
 	PowerState:
 		id: power_state_section
 		pos: (power_button.right, 0)
-	LogosSection:
-		id: logos_txt_section
+	ScreenMenuSpinner:
+		id: menu_spinner
 		pos_hint: {"right": 1, "top": 1}
 
 
