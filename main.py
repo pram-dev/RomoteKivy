@@ -32,13 +32,21 @@ class HomeButton(FunctionButtons):
 
 
 class VolUpButton(FunctionButtons):
-    pass
+    """
+    Volume-up button class.
+    """
+
+    def on_press(self):
+        MDApp.get_running_app().root.current_screen.remote.volume_up()
 
 
 class VolDownButton(FunctionButtons):
     """
     Volume-down button class.
     """
+
+    def on_press(self):
+        MDApp.get_running_app().root.current_screen.remote.volume_down()
 
 
 class InfoButton(FunctionButtons):
@@ -68,9 +76,7 @@ class ControllerFunctionButtonsSection(MDRelativeLayout):
     """
     Section of the remote control that contains all functionality buttons.
     """
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    pass
 
 
 class PowerState(Button):
