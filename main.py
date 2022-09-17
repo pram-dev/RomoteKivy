@@ -77,6 +77,22 @@ class VolUpButton(FunctionButtons):
         MDApp.get_running_app().root.current_screen.remote.volume_up()
 
 
+class SendTextButton(FunctionButtons):
+    """
+    Button to send a typed string to Roku devices.
+    """
+    pass
+
+
+class PlayPauseButton(FunctionButtons):
+    """
+    Play/pause media button
+    """
+
+    def on_press(self):
+        MDApp.get_running_app().root.current_screen.remote.play()
+
+
 class VolDownButton(FunctionButtons):
     """
     Volume-down button class.

@@ -169,6 +169,18 @@
 
 
 #####-----
+<SendTextButton>:
+	icon: "keyboard"
+
+
+
+#####-----
+<PlayPauseButton>:
+	icon: "play-pause"
+
+
+
+#####-----
 <ControllerFunctionButtonsSection>:
 	md_bg_color: (149 / 255, 117 / 255, 205 / 255, 1)
 	size_hint: (1, 1)
@@ -187,6 +199,12 @@
 	VolUpButton:
 		id: vol_up_button
 		pos_hint: {"x": 0.75, "top": 1}
+	SendTextButton:
+		id: send_text_button
+		pos_hint: {"x": 0, "top": 2 / 3}
+	PlayPauseButton:
+		id: play_pause_button
+		pos_hint: {"x": 0.25, "top": 2 / 3}
 	InfoButton:
 		id: info_button
 		pos_hint: {"x": 0.5, "top": 2 / 3}
