@@ -73,6 +73,12 @@
 
 
 
+#####-----
+<InfoButton>:
+	icon: "menu"
+
+
+
 ######-----
 <ControllerTopSection>:
 
@@ -113,25 +119,58 @@
 
 #####-----
 <FunctionButtons>:
-	canvas:
-		Color:
-			rgba: (133 / 255, 179 / 255, 244/255, 1)
-		Rectangle:
-			pos: root.pos
-			size: root.size
+	md_bg_color: (149 / 255, 117 / 255, 205 / 255, 0.8)
+	rounded_button: False
+	size_hint: (0.25, 0.33333)
+	icon_size: "28sp"
 
 
 
 #####-----
+<VolUpButton>:
+	icon: "volume-plus"
+
+
+
+#####-----
+<VolDownButton>:
+	icon: "volume-minus"
+
+
+
+#####-----
+<BackButton>:
+	icon: "arrow-left"
+
+
+
+#####-----
+<HomeButton>:
+	icon: "home"
+
+
+#####-----
 <ControllerFunctionButtonsSection>:
+	size_hint: (1, 1)
+	cols: 4
+	rows: 3
+
 	BackButton:
 		id: back_button
+		pos_hint: {"x": 0, "top": 1}
 	HomeButton:
 		id: home_button
+		pos_hint: {"x": 0.25, "top": 1}
 	VolUpButton:
 		id: vol_up_button
+		pos_hint: {"x": 0.50, "top": 1}
 	VolDownButton:
 		id: vol_down_button
+		pos_hint: {"x": 0.75, "top": 1}
+	InfoButton:
+		id: info_button
+		pos_hint: {"x": 0, "top": 0.66666}
+
 
 
 #####-----

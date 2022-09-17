@@ -12,17 +12,14 @@ from kivy.uix.button import Button
 from kivymd.uix.relativelayout import MDRelativeLayout
 from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.gridlayout import MDGridLayout
-from kivy.properties import ObjectProperty
-from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDFillRoundFlatIconButton
-from kivymd.uix.button import MDRectangleFlatIconButton
+from kivymd.uix.button import MDIconButton
 
 kivy.require("2.1.0")
 Window.size = consts.DEFAULT_WINDOW_SIZE
 
 
-class FunctionButtons(MDRectangleFlatIconButton):
+class FunctionButtons(MDIconButton):
     pass
 
 
@@ -39,6 +36,12 @@ class VolUpButton(FunctionButtons):
 
 
 class VolDownButton(FunctionButtons):
+    """
+    Volume-down button class.
+    """
+
+
+class InfoButton(FunctionButtons):
     pass
 
 
@@ -49,11 +52,9 @@ class MainRemoteScreen(MDScreen):
 
     def on_pre_enter(self):
         # update_all_buttons()
+        self.remote = MDApp.get_running_app().controller
         self.main_top_section.power_state_section.update_power_state(
             self.remote.ROKU_POWER_STATE)
-
-    def receive_remote(self, remote):
-        self.remote = remote
 
 
 class ControllerTopSection(MDRelativeLayout):
@@ -63,7 +64,7 @@ class ControllerTopSection(MDRelativeLayout):
     pass
 
 
-class ControllerFunctionButtonsSection(MDBoxLayout):
+class ControllerFunctionButtonsSection(MDRelativeLayout):
     """
     Section of the remote control that contains all functionality buttons.
     """
@@ -80,40 +81,28 @@ class PowerState(Button):
     def update_power_state(self, power_state):
         self.text = f"POWER_STATE: {power_state}"
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
 
 class PowerButton(MDFillRoundFlatIconButton):
     """
     Power button widget on remote control GUI.
     """
 
-    def update_bg_color(self):
-        power_state = MDApp.get_running_app().controller.ROKU_POWER_STATE
-
-        if power_state == "On":
-            self.md_bg_color = (50 / 255, 188 / 255, 252 / 255, 1)
-        elif power_state == "Off":
-            self.md_bg_color = (223 / 255, 70 / 255, 97 / 255, 1)
-
-    def power_button_press(self):
-        ROOT_MAIN_SCR = MDApp.get_running_app().root.ids.main_remote_scr
-        POWER_STATE_WIDGET = (
-            MDApp.get_running_app().
-            root.ids.main_remote_scr.
-            ids.main_top_section.
-            ids.power_state_section)
-        ROOT_MAIN_SCR.remote.power_toggle()
-        POWER_STATE = (
-            MDApp.get_running_app().root.
-            ids.main_remote_scr.remote.ROKU_POWER_STATE)
-        POWER_STATE_WIDGET.update_power_state(POWER_STATE)
+    def on_parent(self, power_button, parent):
+        self.remote = MDApp.get_running_app().controller
         self.update_bg_color()
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def update_bg_color(self):
+        power_state = self.remote.ROKU_POWER_STATE
 
+        if power_state == "On":
+            self.md_bg_color = (50 / 255, 188 / 255, 252 / 255, 0.8)
+        elif power_state == "Off":
+            self.md_bg_color = (223 / 255, 70 / 255, 97 / 255, 0.8)
+
+    def power_button_press(self):
+        self.remote.power_toggle()
+        POWER_STATE_WIDGET = self.parent.ids.power_state_section
+        POWER_STATE_WIDGET.update_power_state(self.remote.ROKU_POWER_STATE)
         self.update_bg_color()
 
 
@@ -122,21 +111,16 @@ class RootScreenManager(MDScreenManager):
     Main screen manager for RomotePyApp
     """
 
-    def hand_remote(self, scr_name, remote):
-        scr = self.get_screen(scr_name)
-        scr.receive_remote(remote)
-
-    def set_screen(self, scr_name, remote):
-        self.hand_remote(scr_name, remote)
+    def set_screen(self, scr_name):
         self.current = scr_name
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         remote = MDApp.get_running_app().controller
         if remote.CONTACT_ESTABLISHED:
-            self.set_screen(self.main_remote_scr.name, remote)
+            self.set_screen(self.main_remote_scr.name)
         else:
-            self.set_screen(self.init_setup_scr.name, remote)
+            self.set_screen(self.init_setup_scr.name)
 
 
 class RomotePyApp(MDApp):
