@@ -32,12 +32,31 @@ class ReverseButton(FunctionButtons):
         MDApp.get_running_app().root.current_screen.remote.reverse()
 
 
+class ForwardButton(FunctionButtons):
+    """
+    Fast-forward button class
+    """
+
+    def on_press(self):
+        MDApp.get_running_app().root.current_screen.remote.forward()
+
+
 class BackButton(FunctionButtons):
-    pass
+    """
+    Back button class
+    """
+
+    def on_press(self):
+        MDApp.get_running_app().root.current_screen.remote.back()
 
 
 class HomeButton(FunctionButtons):
-    pass
+    """
+    Home button class
+    """
+
+    def on_press(self):
+        MDApp.get_running_app().root.current_screen.remote.home()
 
 
 class MuteButton(FunctionButtons):
@@ -68,7 +87,12 @@ class VolDownButton(FunctionButtons):
 
 
 class InfoButton(FunctionButtons):
-    pass
+    """
+    Info button (star-icon button on physical Roku remote) class
+    """
+
+    def on_press(self):
+        MDApp.get_running_app().root.current_screen.remote.info()
 
 
 class MainRemoteScreen(MDScreen):

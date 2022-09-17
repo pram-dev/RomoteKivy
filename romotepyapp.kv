@@ -163,6 +163,12 @@
 
 
 #####-----
+<ForwardButton>:
+	icon: "fast-forward"
+
+
+
+#####-----
 <ControllerFunctionButtonsSection>:
 	size_hint: (1, 1)
 	cols: 4
@@ -171,6 +177,9 @@
 	ReverseButton:
 		id: reverse_button
 		pos_hint: {"x": 0, "top": 1}
+	ForwardButton:
+		id: forward_button
+		pos_hint: {"x": 0.25, "top": 1}
 	HomeButton:
 		id: home_button
 		pos_hint: {"x": 0.5, "top": 1}
