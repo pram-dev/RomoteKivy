@@ -23,12 +23,30 @@ class FunctionButtons(MDIconButton):
     pass
 
 
+class ReverseButton(FunctionButtons):
+    """
+    Reverse/rewind button class
+    """
+
+    def on_press(self):
+        MDApp.get_running_app().root.current_screen.remote.reverse()
+
+
 class BackButton(FunctionButtons):
     pass
 
 
 class HomeButton(FunctionButtons):
     pass
+
+
+class MuteButton(FunctionButtons):
+    """
+    Mute button class
+    """
+
+    def on_press(self):
+        MDApp.get_running_app().root.current_screen.remote.volume_mute()
 
 
 class VolUpButton(FunctionButtons):
