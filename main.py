@@ -81,17 +81,18 @@ class PowerState(Button):
     def update_power_state(self, power_state):
         self.text = f"POWER_STATE: {power_state}"
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
 
 class PowerButton(MDFillRoundFlatIconButton):
     """
     Power button widget on remote control GUI.
     """
 
+    def on_parent(self, power_button, parent):
+        self.remote = MDApp.get_running_app().controller
+        self.update_bg_color()
+
     def update_bg_color(self):
-        power_state = MDApp.get_running_app().controller.ROKU_POWER_STATE
+        power_state = self.remote.ROKU_POWER_STATE
 
         if power_state == "On":
             self.md_bg_color = (50 / 255, 188 / 255, 252 / 255, 0.8)
@@ -99,22 +100,9 @@ class PowerButton(MDFillRoundFlatIconButton):
             self.md_bg_color = (223 / 255, 70 / 255, 97 / 255, 0.8)
 
     def power_button_press(self):
-        ROOT_MAIN_SCR = MDApp.get_running_app().root.ids.main_remote_scr
-        POWER_STATE_WIDGET = (
-            MDApp.get_running_app().
-            root.ids.main_remote_scr.
-            ids.main_top_section.
-            ids.power_state_section)
-        ROOT_MAIN_SCR.remote.power_toggle()
-        POWER_STATE = (
-            MDApp.get_running_app().root.
-            ids.main_remote_scr.remote.ROKU_POWER_STATE)
-        POWER_STATE_WIDGET.update_power_state(POWER_STATE)
-        self.update_bg_color()
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
+        self.remote.power_toggle()
+        POWER_STATE_WIDGET = self.parent.ids.power_state_section
+        POWER_STATE_WIDGET.update_power_state(self.remote.ROKU_POWER_STATE)
         self.update_bg_color()
 
 
