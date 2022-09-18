@@ -3,209 +3,22 @@ GUI implementation of romote.py
 """
 
 import kivy
-import consts
-from romote import Romote
+from utilities import consts
+from utilities.romote import Romote
 from configparser import ConfigParser
 from kivymd.app import MDApp
 from kivy.core.window import Window
-from kivy.uix.button import Button
-from kivymd.uix.relativelayout import MDRelativeLayout
-from kivymd.uix.screenmanager import MDScreenManager
-from kivymd.uix.screen import MDScreen
-from kivymd.uix.button import MDFillRoundFlatIconButton
-from kivymd.uix.button import MDIconButton
+from root.romote_screen_mgr import RootScreenManager
+from kivy.lang import Builder
+
+Builder.load_file("kv/romotepy.kv")
+
 
 kivy.require("2.1.0")
 Window.size = consts.DEFAULT_WINDOW_SIZE
 
 
-class FunctionButtons(MDIconButton):
-    pass
-
-
-class ReverseButton(FunctionButtons):
-    """
-    Reverse/rewind button class
-    """
-
-    def on_press(self):
-        MDApp.get_running_app().root.current_screen.remote.reverse()
-
-
-class ForwardButton(FunctionButtons):
-    """
-    Fast-forward button class
-    """
-
-    def on_press(self):
-        MDApp.get_running_app().root.current_screen.remote.forward()
-
-
-class BackButton(FunctionButtons):
-    """
-    Back button class
-    """
-
-    def on_press(self):
-        MDApp.get_running_app().root.current_screen.remote.back()
-
-
-class HomeButton(FunctionButtons):
-    """
-    Home button class
-    """
-
-    def on_press(self):
-        MDApp.get_running_app().root.current_screen.remote.home()
-
-
-class MuteButton(FunctionButtons):
-    """
-    Mute button class
-    """
-
-    def on_press(self):
-        MDApp.get_running_app().root.current_screen.remote.volume_mute()
-
-
-class VolUpButton(FunctionButtons):
-    """
-    Volume-up button class.
-    """
-
-    def on_press(self):
-        MDApp.get_running_app().root.current_screen.remote.volume_up()
-
-
-class SendTextButton(FunctionButtons):
-    """
-    Button to send a typed string to Roku devices.
-    """
-    pass
-
-
-class PlayPauseButton(FunctionButtons):
-    """
-    Play/pause media button
-    """
-
-    def on_press(self):
-        MDApp.get_running_app().root.current_screen.remote.play()
-
-
-class VolDownButton(FunctionButtons):
-    """
-    Volume-down button class.
-    """
-
-    def on_press(self):
-        MDApp.get_running_app().root.current_screen.remote.volume_down()
-
-
-class InfoButton(FunctionButtons):
-    """
-    Info button (star-icon button on physical Roku remote) class
-    """
-
-    def on_press(self):
-        MDApp.get_running_app().root.current_screen.remote.info()
-
-
-class ChannelUpButton(FunctionButtons):
-    """
-    Channel up button
-    """
-
-    def on_press(self):
-        MDApp.get_running_app().root.current_screen.remote.channel_up()
-
-
-class ChannelDownButton(FunctionButtons):
-    """
-    Channel down button
-    """
-
-    def on_press(self):
-        MDApp.get_running_app().root.current_screen.remote.channel_down()
-
-
-class MainRemoteScreen(MDScreen):
-    """
-    Main remote control interface.
-    """
-
-    def on_pre_enter(self):
-        # update_all_buttons()
-        self.remote = MDApp.get_running_app().controller
-        self.main_top_section.power_state_section.update_power_state(
-            self.remote.ROKU_POWER_STATE)
-
-
-class ControllerTopSection(MDRelativeLayout):
-    """
-    Top section of main controller GUI.
-    """
-    pass
-
-
-class ControllerFunctionButtonsSection(MDRelativeLayout):
-    """
-    Section of the remote control that contains all functionality buttons.
-    """
-    pass
-
-
-class PowerState(Button):
-    """
-    Section containing Roku device/power-state info.
-    """
-
-    def update_power_state(self, power_state):
-        self.text = f"POWER_STATE: {power_state}"
-
-
-class PowerButton(MDFillRoundFlatIconButton):
-    """
-    Power button widget on remote control GUI.
-    """
-
-    def on_parent(self, power_button, parent):
-        self.remote = MDApp.get_running_app().controller
-        self.update_bg_color()
-
-    def update_bg_color(self):
-        power_state = self.remote.ROKU_POWER_STATE
-
-        if power_state == "On":
-            self.md_bg_color = (50 / 255, 188 / 255, 252 / 255, 0.8)
-        elif power_state == "Off":
-            self.md_bg_color = (223 / 255, 70 / 255, 97 / 255, 0.8)
-
-    def power_button_press(self):
-        self.remote.power_toggle()
-        POWER_STATE_WIDGET = self.parent.ids.power_state_section
-        POWER_STATE_WIDGET.update_power_state(self.remote.ROKU_POWER_STATE)
-        self.update_bg_color()
-
-
-class RootScreenManager(MDScreenManager):
-    """
-    Main screen manager for RomotePyApp
-    """
-
-    def set_screen(self, scr_name):
-        self.current = scr_name
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        remote = MDApp.get_running_app().controller
-        if remote.CONTACT_ESTABLISHED:
-            self.set_screen(self.main_remote_scr.name)
-        else:
-            self.set_screen(self.init_setup_scr.name)
-
-
-class RomotePyApp(MDApp):
+class RomotePy(MDApp):
     """
     Base Romote app
     """
@@ -230,4 +43,4 @@ class RomotePyApp(MDApp):
 
 
 if __name__ == "__main__":
-    RomotePyApp().run()
+    RomotePy().run()
