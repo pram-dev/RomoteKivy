@@ -111,6 +111,24 @@ class InfoButton(FunctionButtons):
         MDApp.get_running_app().root.current_screen.remote.info()
 
 
+class ChannelUpButton(FunctionButtons):
+    """
+    Channel up button
+    """
+
+    def on_press(self):
+        MDApp.get_running_app().root.current_screen.remote.channel_up()
+
+
+class ChannelDownButton(FunctionButtons):
+    """
+    Channel down button
+    """
+
+    def on_press(self):
+        MDApp.get_running_app().root.current_screen.remote.channel_down()
+
+
 class MainRemoteScreen(MDScreen):
     """
     Main remote control interface.
