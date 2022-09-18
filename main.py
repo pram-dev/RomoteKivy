@@ -11,7 +11,7 @@ from kivy.core.window import Window
 from root.romote_screen_mgr import RootScreenManager
 from kivy.lang import Builder
 
-Builder.load_file("kv/romotepy.kv")
+Builder.load_file(consts.ROMOTE_PY_KV)
 
 
 kivy.require("2.1.0")
