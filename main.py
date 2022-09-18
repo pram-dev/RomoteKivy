@@ -3,13 +3,13 @@ GUI implementation of romote.py
 """
 
 import kivy
+from kivy.lang import Builder
+from kivymd.app import MDApp
+from kivy.core.window import Window
 from utilities import consts
 from utilities.romote import Romote
 from configparser import ConfigParser
-from kivymd.app import MDApp
-from kivy.core.window import Window
 from root.romote_screen_mgr import RootScreenManager
-from kivy.lang import Builder
 
 kivy.require("2.1.0")
 Window.size = consts.DEFAULT_WINDOW_SIZE
