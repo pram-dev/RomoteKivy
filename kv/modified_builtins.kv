@@ -1,0 +1,21 @@
+#:kivy 2.1.0
+
+#####-----
+<MDScreen>:
+
+	#:set CANVAS_RGBA_COLOR (0.125, 0.125, 0.125, 0.85)
+
+	canvas:
+		Color:
+			rgba: CANVAS_RGBA_COLOR
+		Rectangle:
+			pos: root.pos
+			size: root.size
+
+
+
+#####-----
+<MDLabel>:
+	text_size: self.size
+	valign: "center"
+	halign: "center"

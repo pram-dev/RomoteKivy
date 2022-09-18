@@ -1,0 +1,213 @@
+#:kivy 2.1.0
+
+
+#####-----
+<MainScreenGridLayout@MDGridLayout>:
+	cols: 1
+
+##############################################
+#####-----
+<PowerState>:
+	size_hint: 0.35, 1
+	text: "POWER_STATE"
+	color: (1, 1, 1, 1)
+
+
+
+#####-----
+<ScreenMenuSpinner@Button>:
+	size_hint: 0.4, 1
+	text: "SCREEN_MENU_SPINNER"
+
+
+
+
+#####-----
+<PowerButton>:
+	icon: POWER_BUTTON_ICON
+	size_hint: 0.25, 0.5
+	text: POWER_BUTTON_TEXT
+	on_press: self.power_button_press()
+
+
+
+######-----
+<ControllerTopSection>:
+
+	#:set POWER_BUTTON_TEXT "POWER"
+	#:set POWER_BUTTON_ICON "power"
+
+	size_hint: (1, 0.35)
+
+	power_button: power_button
+	power_state_section: power_state_section
+	menu_spinner: menu_spinner
+
+	PowerButton:
+		id: power_button
+		pos_hint: {"x" : 0, "center_y": 0.5}
+	PowerState:
+		id: power_state_section
+		pos: (power_button.right, 0)
+	ScreenMenuSpinner:
+		id: menu_spinner
+		pos_hint: {"right": 1, "top": 1}
+#################################################
+
+
+
+
+
+
+#################################################
+#####-----
+<ControllerDPadSection@MDRelativeLayout>:
+	Button:
+		text: "SVG_DPAD_WIDGET"
+##################################################
+
+
+
+
+
+
+##################################################
+#####-----
+<FunctionButtons>:
+	md_bg_color: (149 / 255, 117 / 255, 205 / 255, 0.8)
+	rounded_button: False
+	size_hint: (0.25, 0.33333)
+	icon_size: "28sp"
+
+
+#####-----
+<InfoButton>:
+	icon: "menu"
+
+
+#####-----
+<VolUpButton>:
+	icon: "volume-plus"
+
+
+
+#####-----
+<VolDownButton>:
+	icon: "volume-minus"
+
+
+#####-----
+<BackButton>:
+	icon: "arrow-left"
+
+
+#####-----
+<HomeButton>:
+	icon: "home"
+
+
+#####-----
+<MuteButton>:
+	icon: "volume-off"
+
+
+#####-----
+<ReverseButton>:
+	icon: "rewind"
+
+
+#####-----
+<ForwardButton>:
+	icon: "fast-forward"
+
+
+#####-----
+<SendTextButton>:
+	icon: "keyboard"
+
+
+#####-----
+<PlayPauseButton>:
+	icon: "play-pause"
+
+
+#####-----
+<ChannelUpButton>:
+	icon: "arrow-up-drop-circle"
+
+
+#####-----
+<ChannelDownButton>:
+	icon: "arrow-down-drop-circle"
+
+
+#####-----
+<ControllerFunctionButtonsSection>:
+	md_bg_color: (149 / 255, 117 / 255, 205 / 255, 1)
+	size_hint: (1, 1)
+	cols: 4
+	rows: 3
+
+	ChannelUpButton:
+		id: channel_up_button
+		pos_hint: {"x": 0, "top" : 1}
+	ForwardButton:
+		id: forward_button
+		pos_hint: {"x": 0.25, "top": 1}
+	VolUpButton:
+		id: vol_up_button
+		pos_hint: {"x": 0.75, "top": 1}
+	SendTextButton:
+		id: send_text_button
+		pos_hint: {"x": 0, "top": 2 / 3}
+	PlayPauseButton:
+		id: play_pause_button
+		pos_hint: {"x": 0.25, "top": 2 / 3}
+	InfoButton:
+		id: info_button
+		pos_hint: {"x": 0.5, "top": 1}
+	HomeButton:
+		id: home_button
+		pos_hint: {"x": 0.5, "top": 2 / 3}
+	MuteButton:
+		id: mute_button
+		pos_hint: {"x": 0.75, "top": 2 / 3}
+	ChannelDownButton:
+		id: channel_down_button
+		pos_hint: {"x": 0, "top": 1 / 3}
+	ReverseButton:
+		id: reverse_button
+		pos_hint: {"x": 0.25, "top": 1 / 3}
+	BackButton:
+		id: back_button
+		pos_hint: {"x": 0.5, "top": 1 / 3}
+	VolDownButton:
+		id: vol_down_button
+		pos_hint: {"x": 0.75, "top": 1 / 3}
+##################################################
+
+
+
+
+
+
+##################################################
+#####-----
+<ControllerQuickLinksSection@MDBoxLayout>:
+	Button:
+		text: "QUICKLINKS_FAVORITES_CUSTOMIZABLE_BUTTONS"
+
+##################################################
+
+#####-----
+<MainRemoteScreen>: #MD screen
+
+	main_top_section: main_top_section
+
+	MainScreenGridLayout:
+
+		ControllerTopSection:
+			id: main_top_section
+		ControllerDPadSection:
+		ControllerFunctionButtonsSection:
+		ControllerQuickLinksSection:
