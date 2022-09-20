@@ -1,5 +1,12 @@
+from os.path import join
 from utilities.svg_widget import SvgWidget
 from kivymd.uix.anchorlayout import MDAnchorLayout
+
+
+class DPadSVG(SvgWidget):
+
+    def __init__(self, filename, *args, **kwargs):
+        super().__init__(filename, *args, **kwargs)
 
 
 class ControllerDPadSection(MDAnchorLayout):
@@ -7,6 +14,6 @@ class ControllerDPadSection(MDAnchorLayout):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        dpad = SvgWidget("svg/dpad.svg")
-        dpad.scale = 1.5
+        dpad_svg = join("svg", "dpad.svg")
+        dpad = DPadSVG(dpad_svg)
         self.add_widget(dpad)
