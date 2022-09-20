@@ -57,9 +57,12 @@
 
 #################################################
 #####-----
-<ControllerDPadSection@MDRelativeLayout>:
+<SvgWidget>:
+    do_rotation: False
+
+#####-----
+<ControllerDPadSection@MDAnchorLayout>:
 	Button:
-		text: "SVG_DPAD_WIDGET"
 ##################################################
 
 
@@ -211,5 +214,5 @@
 		ControllerTopSection:
 			id: main_top_section
 		ControllerDPadSection:
-		ControllerFunctionButtonsSection:
 		ControllerQuickLinksSection:
+		ControllerFunctionButtonsSection:
