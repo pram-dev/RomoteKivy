@@ -10,6 +10,12 @@ from utilities import consts
 from utilities.romote import Romote
 from configparser import ConfigParser
 from root.romote_screen_mgr import RootScreenManager
+from root.screens.main_screen.main_remote_screen import MainRemoteScreen
+from root.screens.main_screen.widgets.controller_top_section import (
+    ControllerTopSection)
+from root.screens.main_screen.widgets.function_buttons_section import (
+    ControllerFunctionButtonsSection)
+
 
 kivy.require("2.1.0")
 Window.size = consts.DEFAULT_WINDOW_SIZE

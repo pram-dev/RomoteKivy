@@ -1,6 +1,5 @@
 from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
-from root.screens.main_screen.main_remote_screen import MainRemoteScreen
 
 
 class RootScreenManager(MDScreenManager):
