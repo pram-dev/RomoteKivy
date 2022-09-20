@@ -1,19 +1,19 @@
 from os.path import join
-from utilities.svg_widget import SvgWidget
-from kivymd.uix.anchorlayout import MDAnchorLayout
+from kivymd.uix.widget import MDWidget
+from kivymd.uix.relativelayout import MDRelativeLayout
+from kivy.graphics.svg import Svg
 
 
-class DPadSVG(SvgWidget):
+class DPadSVG(MDWidget):
 
-    def __init__(self, filename, *args, **kwargs):
-        super().__init__(filename, *args, **kwargs)
-
-
-class ControllerDPadSection(MDAnchorLayout):
-
-    def __init__(self, *args, **kwargs):
+    def __init__(self, filename=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        dpad_svg = join("svg", "dpad.svg")
-        dpad = DPadSVG(dpad_svg)
-        self.add_widget(dpad)
+        filename = join("svg", "dpad.svg")
+        with self.canvas:
+            self.svg = Svg(filename)
+        self.size = self.svg.width, self.svg.height
+
+
+class ControllerDPadSection(MDRelativeLayout):
+    pass
