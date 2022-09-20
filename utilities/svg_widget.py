@@ -7,7 +7,5 @@ class SvgWidget(Scatter):
     def __init__(self, filename, **kwargs):
         super(SvgWidget, self).__init__(**kwargs)
         with self.canvas:
-            print(filename)
             svg = Svg(filename)
         self.size = svg.width, svg.height
-        print(self.size)
