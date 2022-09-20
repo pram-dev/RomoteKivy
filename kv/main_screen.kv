@@ -57,21 +57,19 @@
 
 #################################################
 #####-----
-<SvgWidget>:
-    do_rotation: False
+<DPadButton>:
 
 
-<DPadSVG>:
 
 #####-----
 <ControllerDPadSection>:
 	size_hint: 1, 1
 
-	dpad_svg: dpad_svg
+	dpad_button: dpad_button
 
-	DPadSVG:
-		id: dpad_svg
-
+	DPadButton:
+		id: dpad_button
+		pos_hint: {"x": 0.275, "y": 0.42}
 
 ##################################################
 
