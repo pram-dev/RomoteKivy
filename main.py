@@ -8,9 +8,9 @@ from kivymd.app import MDApp
 from kivy.core.window import Window
 from utilities import consts
 from utilities.romote import Romote
-from utilities.svg_widget import SvgWidget
 from configparser import ConfigParser
 from root.romote_screen_mgr import RootScreenManager
+from root.screens.main_screen.widgets.dpad_section import ControllerDPadSection
 from root.screens.main_screen.main_remote_screen import MainRemoteScreen
 from root.screens.main_screen.widgets.controller_top_section import (
     ControllerTopSection)
