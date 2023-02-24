@@ -4,8 +4,8 @@ GUI implementation of romote.py
 
 import kivy
 from kivy.lang import Builder
-from kivymd.app import MDApp
 from kivy.core.window import Window
+from kivymd.app import MDApp
 from utilities import consts
 from utilities.romote import Romote
 from configparser import ConfigParser
