@@ -1,0 +1,28 @@
+#:kivy 2.1.0
+
+#####-----
+<DirectionalPad>:
+    orientation: 'vertical'
+
+    MDIconButton:
+        icon: 'arrow-up'
+        on_press: root.direction('up')
+
+    BoxLayout:
+        orientation: 'horizontal'
+
+        MDIconButton:
+            icon: 'arrow-left'
+            on_press: root.direction('left')
+
+        MDFloatingActionButton:
+            icon: 'check'
+            on_press: root.select()
+
+        MDIconButton:
+            icon: 'arrow-right'
+            on_press: root.direction('right')
+
+    MDIconButton:
+        icon: 'arrow-down'
+        on_press: root.direction('down')
